@@ -74,4 +74,10 @@ async def roleclean(ctx, channeltodelete):
                     await channel.delete()
                 except:
                   pass
+
+@client.command()
+async def setup(ctx):
+guild = ctx.guild
+await guild.create_role(name="LightYear Unbypassable Setup")
+await guild.create_channel(name="LightYear-logs")
 client.run(token)
