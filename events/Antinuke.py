@@ -68,7 +68,7 @@ class anti(commands.Cog):
             else:
                 if guild.me.guild_permissions.ban_members:
                     await guild.ban(entry.user,
-                                   reason="Proton | Anti Ban")
+                                   reason="LightYear | Anti Ban")
 
     @commands.Cog.listener()
     async def on_member_unban(self, guild: discord.Guild,
@@ -108,7 +108,7 @@ class anti(commands.Cog):
             else:
                 if guild.me.guild_permissions.ban_members:
                     await guild.ban(entry.user,
-                                   reason="Proton | Anti Kick")
+                                   reason="LightYear | Anti Kick")
 
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member) -> None:
@@ -126,10 +126,10 @@ class anti(commands.Cog):
             if entry.user.id in IGNORE or entry.user.id == guild.owner.id:
                 return
             if member.bot:
-                await member.ban(reason="Proton | Anti Bot")
+                await member.ban(reason="LightYear | Anti Bot")
                 if guild.me.guild_permissions.ban_members:
                     await guild.ban(entry.user,
-                                   reason="Proton | Anti Bot")
+                                   reason="LightYear | Anti Bot")
 
     @commands.Cog.listener()
     async def on_guild_channel_create(self, channel) -> None:
@@ -150,7 +150,7 @@ class anti(commands.Cog):
                 await channel.delete()
                 if guild.me.guild_permissions.ban_members:
                     await guild.ban(entry.user,
-                                   reason="Proton | Anti Channel Create")
+                                   reason="LightYear | Anti Channel Create")
 
     @commands.Cog.listener()
     async def on_guild_channel_delete(self, channel) -> None:
@@ -170,7 +170,7 @@ class anti(commands.Cog):
             else:
                 await channel.clone()
                 await guild.ban(entry.user,
-                               reason="Proton | Anti Channel Delete")
+                               reason="LightYear | Anti Channel Delete")
 
     @commands.Cog.listener()
     async def on_guild_channel_update(
@@ -193,7 +193,7 @@ class anti(commands.Cog):
                 await after.edit(name=f"{name}", reason=f"Proton | Recovery")
                 if guild.me.guild_permissions.ban_members:
                     await guild.ban(entry.user,
-                                   reason="Proton | Anti Channel Update")
+                                   reason="LightYear | Anti Channel Update")
 
     @commands.Cog.listener()
     async def on_guild_update(self, after: discord.Guild,
@@ -213,10 +213,10 @@ class anti(commands.Cog):
                 return
             else:
                 await after.edit(name=f"{before.name}",
-                                 reason=f"Proton | Recovery")
+                                 reason=f"LightYear | Recovery")
                 if guild.me.guild_permissions.manage_webhooks:
                     await guild.ban(entry.user,
-                                  reason="Proton | Anti Guild Update")
+                                  reason="LightYear | Anti Guild Update")
 
     @commands.Cog.listener()
     async def on_webhooks_update(self, channel) -> None:
@@ -235,7 +235,7 @@ class anti(commands.Cog):
                 return
             else:
                 await guild.ban(entry.user,
-                               reason="Proton | Anti Guild Update")
+                               reason="LightYear | Anti Guild Update")
                 webhooks = await guild.webhooks()
                 for webhook in webhooks:
                     if webhook.id == entry.target.id:
@@ -262,7 +262,7 @@ class anti(commands.Cog):
                 await role.delete()
                 if guild.me.guild_permissions.ban_members:
                     await guild.ban(entry.user,
-                                   reason="Proton | Anti Role Create")
+                                   reason="LightYear | Anti Role Create")
 
     @commands.Cog.listener()
     async def on_guild_role_delete(self, role) -> None:
@@ -283,7 +283,7 @@ class anti(commands.Cog):
                 await role.colne()
                 if guild.me.guild_permissions.ban_members:
                     await guild.ban(entry.user,
-                                   reason="Proton | Anti Role Delete")
+                                   reason="LightYear | Anti Role Delete")
 
     @commands.Cog.listener()
     async def on_guild_role_update(self, after: discord.Role,
@@ -306,7 +306,7 @@ class anti(commands.Cog):
                 await after.edit(permissions=permissions)
                 if guild.me.guild_permissions.ban_members:
                     await guild.ban(entry.user,
-                                   reason="Proton | Anti Role Update")
+                                   reason="LightYear | Anti Role Update")
 
     @commands.Cog.listener()
     async def on_guild_emojis_update(self, guild, before, after) -> None:
@@ -326,11 +326,11 @@ class anti(commands.Cog):
             else:
                 permissions = before.permissions
                 await after.edit(name=f"{before.name}",
-                                 reason=f"Proton | Recovery",
+                                 reason=f"LightYear | Recovery",
                                  permissions=permissions)
                 if guild.me.guild_permissions.ban_members:
                     await guild.ban(entry.user,
-                                   reason="Proton | Anti Role Update")
+                                   reason="LightYear | Anti Role Update")
 
 def setup(client):
 	client.add_cog(anti(client))
