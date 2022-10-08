@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands 
 import colorama 
 from colorama import Fore
-token = "TOKEN" 
+token = "OTg4MDI5MjEzMzQyODU1MjI4.GX06fp.t1yXyUKEWi63Md4In5Htb7r2ms9H36SFomLBKs" 
 intents = discord.Intents.all()
 intents.members = True
 intents.guilds = True
@@ -80,4 +80,9 @@ async def setup(ctx):
 guild = ctx.guild
 await guild.create_role(name="LightYear Unbypassable Setup")
 await guild.create_channel(name="LightYear-logs")
+
+@client.command()
+async def invite(ctx):
+    await ctx.send("[invite me](https://discordapp.com/oauth2/authorize?client_id={client.user.id}&scope=bot+applications.commands&permissions=8)")
+
 client.run(token)
